@@ -28,11 +28,11 @@ void calcClusteringCoeff()
 {
     int numNodes = adjMatrix.size();
     cout << "Number of Nodes: " << numNodes << endl << endl;
-    float cumulativeCC = 0.0;
+    long double cumulativeCC = 0.0;
 
     for(int node = 0; node < numNodes; node++)
     {
-        float localCC = 0;
+        long double localCC = 0;
         int degree = 0;
         int triangles = 0;
 
@@ -47,25 +47,31 @@ void calcClusteringCoeff()
 
         }
 
-        for(int j = 0; j < neighbors.size(); j++)
-        {
-            int pal1 = neighbors[j];
-            for(int k = j + 1; k < neighbors.size(); k++)
-            {
-                int pal2 = neighbors[k];
-                if(adjMatrix[pal1][pal2] == 1)
-                {
-                  triangles++;
-                }
-            }
+
+        if(degree > 1){
+          for(int j = 0; j < neighbors.size(); j++)
+          {
+              int pal1 = neighbors[j];
+              for(int k = j + 1; k < neighbors.size(); k++)
+              {
+                  int pal2 = neighbors[k];
+                  if(adjMatrix[pal1][pal2] == 1)
+                  {
+                    triangles++;
+                  }
+              }
+          }
+
+          localCC = (long double) (2 * triangles) / (degree * (degree - 1));
+          cumulativeCC += localCC;
+          //cout << "Node: " << node << "\n\tLocal Clustering Coefficient: " << localCC << "\n\tDegree: " << degree << "\n\tTriangles: " << triangles << endl << endl;
         }
 
-        localCC = (float) (2 * triangles) / (degree * (degree - 1));
-        cumulativeCC += localCC;
-        cout << "Node: " << node << "\n\tLocal Clustering Coefficient: " << localCC << "\n\tDegree: " << degree << "\n\tTriangles: " << triangles << endl << endl;
     }
 
-    float globalCC = cumulativeCC / numNodes;
+    cout << "cumulative cc: " << cumulativeCC << endl << endl;
+
+    long double  globalCC = cumulativeCC / numNodes;
     cout << "Global Clustering Coefficient: " << globalCC << endl << endl;
 
 }

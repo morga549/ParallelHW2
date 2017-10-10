@@ -1,0 +1,25 @@
+Serial:  0.07
+Threads: 2
+	Local Sum: 	0.06
+	Global Sum: 	0.06
+Threads: 4
+	Local Sum: 	0.06
+	Global Sum: 	0.06
+Threads: 6
+	Local Sum: 	0.06
+	Global Sum: 	0.06
+Threads: 8
+	Local Sum: 	0.06
+	Global Sum: 	0.06
+Threads: 10
+	Local Sum: 	0.06
+	Global Sum: 	0.06
+Threads: 12
+	Local Sum: 	0.06
+	Global Sum: 	0.06
+Threads: 14
+	Local Sum: 	0.06
+	Global Sum: 	0.06
+Threads: 16
+	Local Sum: 	0.06
+	Global Sum: 	0.06
