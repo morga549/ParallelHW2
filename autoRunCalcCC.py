@@ -1,14 +1,15 @@
 import subprocess
 import sys
 
-outFile = sys.argv[1]
+infile = sys.argv[1]
+outFile = sys.argv[2]
 
 open(outFile, "w").close()
 
-threads = ["2", "4", "6", "8", "10", "12", "14", "16"]
-threadsV = [2, 4, 6, 8, 10, 12, 14, 16]
+threads = ["2", "4","8", "16"]
+threadsV = [2, 4, 8, 16]
 
-args = ["/usr/bin/time", "-a", "-o", outFile, "-f", "%e", "./serial_CC", "graphV20000.txt"]
+args = ["/usr/bin/time", "-a", "-o", outFile, "-f", "%e", "./serial_CC", infile]
 
 f = open(outFile, "a+")
 f.write("Serial:  " )
@@ -17,9 +18,9 @@ output = subprocess.check_output(args).split()
 
 
 
-args = ["/usr/bin/time", "-a", "-o", outFile, "-f", "%e", "./parallel_CC", "graphV20000.txt", ""]
+args = ["/usr/bin/time", "-a", "-o", outFile, "-f", "%e", "./parallel_CC", infile, ""]
 
-args1 = ["/usr/bin/time", "-a", "-o", outFile, "-f", "%e", "./parallel_CC_globalSum", "graphV20000.txt", ""]
+args1 = ["/usr/bin/time", "-a", "-o", outFile, "-f", "%e", "./parallel_CC_globalSum", infile, ""]
 
 for thread in threads:
 
